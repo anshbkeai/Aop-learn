@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.pojo.Task;
 import com.example.demo.service.TaskService;
+import com.example.demo.utils.Audit;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -36,6 +37,8 @@ public class TaskController {
         return new ResponseEntity<Task>(service.getTask(id), HttpStatus.OK);
     }
 
+
+    @Audit(event="CREATE-TASK")
     @PostMapping("/create")
     public ResponseEntity<?> createTask(@RequestParam String name , @RequestParam String desc) {
         //TODO: process POST request
@@ -51,6 +54,8 @@ public class TaskController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+   
+    @Audit(event = "All-task")
     @GetMapping("/")
     public ResponseEntity<List<Task>> getAllTask() {
         return new ResponseEntity<List<Task>>(service.getAllTask(), HttpStatus.OK);
