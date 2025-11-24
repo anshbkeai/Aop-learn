@@ -3,6 +3,7 @@ package com.example.demo.utils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.slf4j.MDC;
 import org.springframework.expression.ExpressionParser;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
@@ -46,6 +47,7 @@ public class SpelAuditingAspect {
             for(int i = 0 ;i < args.length; i++) ctx.setVariable("p"+i, args[i]);
 
             log.info(ctx.getRootObject().toString());
+            log.info(MDC.get("correlationId"));
             //log.info("p2 value in context = {} (type: {})", ctx.lookupVariable("p2"), ctx.lookupVariable("p2").getClass());
 
 

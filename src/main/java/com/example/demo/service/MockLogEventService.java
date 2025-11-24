@@ -9,6 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 public class MockLogEventService {
 
     public void logEvent(String tag, String message) {
-        System.out.println(tag+ " " + message);
+        log.info("Tag is {} and Message is {}" , tag , message);
     }
 }
